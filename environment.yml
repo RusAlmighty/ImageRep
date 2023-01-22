@@ -1,0 +1,27 @@
+name: ImageRep
+channels:
+  - pytorch
+  - pip
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - numpy
+  - torchvision
+  - pytorch-cuda=11.6
+  - pytorch
+
+
+  - pip:
+      - matplotlib
+      - opencv-python
+      - wandb
+      - tqdm
+      - pydantic
+      - pytorch-lightning
+
+
+
+
+
+
