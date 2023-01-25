@@ -11,14 +11,14 @@ conda activate ImageRep
 ```
 ## Train image representation
 run training
-The image experiment can be reproduced with
+
 ```
 python train.py
 ```
-please make sure to login to [wandb](https://docs.wandb.ai/quickstart) before staring training
-the checkpoints stored at "output" folder.
+Please make sure to login to [wandb](https://docs.wandb.ai/quickstart) before staring training.
+The checkpoints stored at "output" folder.
 
-hyperparameters configuration option can be changed by
+Hyperparameters configuration option can be changed by
 <pre>
 usage: train.py [-h] [--name NAME] [--in_features IN_FEATURES]
                 [--out_features OUT_FEATURES]
@@ -35,7 +35,7 @@ usage: train.py [-h] [--name NAME] [--in_features IN_FEATURES]
 </pre>
 
 
-training convergence that I have conducted , [exp1](https://wandb.ai/rusalmighty/Image%20Representation%20Experiment/runs/o8ehlbdz?workspace=user-)
+Training convergence that I have conducted , [exp1](https://wandb.ai/rusalmighty/Image%20Representation%20Experiment/runs/o8ehlbdz?workspace=user-)
 ### Evaluate
 to produce evaluation images
 ```
