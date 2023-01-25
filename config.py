@@ -15,11 +15,11 @@ def add_model(parser, model):
 
 
 class ModelConfig(BaseModel):
-    name: str = "Run13"
+    name: str = "exp1"
     in_features: int = 3
-    out_features: int = 4
-    hidden_features: int = 512
-    hidden_layers: int = 18
+    out_features: int = 3
+    hidden_features: int = 1024
+    hidden_layers: int = 9
     outermost_linear: bool = True
     first_omega_0: int = 30
     hidden_omega_0: int = 60
@@ -28,10 +28,10 @@ class ModelConfig(BaseModel):
     train_workers: int = 0
     limit: int = 1000
     batch_size: int = 16
-    lr: float = 1E-4
-    wd: float = 1E-5
-    schedule_step: int = 200
+    lr: float = 1E-5
+    wd: float = 1E-2
+    schedule_step: int = 400
     cach: bool = True
 
     train_dataset_path: str = "Data/96"
-    validation_dataset_path: str = "Data/256"
+    validation_dataset_path: str = "Data/255"
