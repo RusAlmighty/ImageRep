@@ -26,7 +26,7 @@ def main():
         gpus=1,
         auto_lr_find=False,
         callbacks=[checkpoint_callback, LearningRateMonitor(logging_interval='step')],
-        check_val_every_n_epoch=1,
+        check_val_every_n_epoch=10,
         auto_scale_batch_size=False,
         log_every_n_steps=1, logger=wandb_logger,
         gradient_clip_val=0.5,
