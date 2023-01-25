@@ -35,7 +35,7 @@ usage: train.py [-h] [--name NAME] [--in_features IN_FEATURES]
 </pre>
 
 
-training convergence that I have conducted , [exp1](https://wandb.ai/rusalmighty/Image%20Representation%20Experiment/runs/1t7h2763?workspace=user-rusalmighty)
+training convergence that I have conducted , [exp1](https://wandb.ai/rusalmighty/Image%20Representation%20Experiment/runs/o8ehlbdz?workspace=user-)
 ### Evaluate
 to produce evaluation images
 ```
