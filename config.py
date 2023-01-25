@@ -34,4 +34,4 @@ class ModelConfig(BaseModel):
     cach: bool = True
 
     train_dataset_path: str = "Data/96"
-    validation_dataset_path: str = "Data/255"
+    validation_dataset_path: str = "Data/256"
