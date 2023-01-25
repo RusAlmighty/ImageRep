@@ -16,8 +16,8 @@ def main():
     config = ModelConfig(**vars(args))
 
     # config = ModelConfig(hidden_features=512, lr=1E-5, hidden_omega_0=60, wd=1E-2)
-    wandb.init(project="Image Representation", name=config.name, config=config.__dict__)
-    wandb_logger = WandbLogger(project="Image Representation", name=config.name)
+    wandb.init(project="Image Representation Experiment", name=config.name, config=config.__dict__)
+    wandb_logger = WandbLogger(project="Image Representation Experiment", name=config.name)
     checkpoint_callback = ModelCheckpoint(
         dirpath=f'output/{config.name}',
         filename='ckpt-{epoch:02d}',
