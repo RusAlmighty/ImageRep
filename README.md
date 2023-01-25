@@ -34,6 +34,8 @@ usage: train.py [-h] [--name NAME] [--in_features IN_FEATURES]
                 [--validation_dataset_path VALIDATION_DATASET_PATH]
 </pre>
 
+
+training convergence that I have conducted , [exp1](https://wandb.ai/rusalmighty/Image%20Representation%20Experiment/runs/1t7h2763?workspace=user-rusalmighty)
 ### Evaluate
 to produce evaluation images
 ```
