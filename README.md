@@ -23,10 +23,13 @@ to produce evaluation images
 python eval_trained.py [checkpoint path]
 ```
 the result will be two image
+
 ####Size Interpolation
+
 ![plot](./size_interpolation_example.jpg)
 
 ####Image Index Interpolation
+
 ![plot](./image_interpolation_example.jpg)
 
 
