@@ -32,6 +32,7 @@ class ModelConfig(BaseModel):
     wd: float = 1E-2
     schedule_step: int = 400
     cach: bool = True
+    set_transparent_to_white: bool = True
 
-    train_dataset_path: str = "Data/96"
+    train_dataset_path: str = r"Data/96"
     validation_dataset_path: str = "Data/256"
