@@ -4,13 +4,13 @@ from glob import glob
 from typing import List
 
 import cv2
+import matplotlib.pyplot as plt
+import numpy as np
 import torch
 
-from data_pipeline import get_mgrid
-from model import Siren
-import matplotlib.pyplot as plt
 from config import ModelConfig, add_model
-import numpy as np
+from data_pipeline import get_mgrid, read_im
+from model import Siren
 
 
 def size_interpolation_example():
@@ -37,20 +37,19 @@ def size_interpolation_example():
     plt.savefig("size_interpolation_example.jpg")
 
 
-def sort_by_similarity() -> List[int]:
-    path = r"Data\96"
+def sort_by_similarity(path: str) -> List[int]:
     sample_list = list(glob(os.path.join(path, "*.png")))
     sample_list = sorted(sample_list)
-    _cached_samples = [cv2.imread(f, cv2.IMREAD_UNCHANGED) for f in sample_list]
+    _cached_samples = [read_im(f, set_transparent_to_white=True) for f in sample_list]
     # sort by MSE similarity
-    indxs = np.argsort(np.mean(np.square(np.reshape(np.diff(_cached_samples, axis=0), (-1, 96 ** 2 * 4))), axis=1))
+    indxs = np.argsort(np.mean(np.square(np.reshape(np.diff(_cached_samples, axis=0), (-1, 96 ** 2 * 3))), axis=1))
     return indxs
 
 
 def image_interpolation_example(indxs: List[int]):
     fig, axes = plt.subplots(3, 3, figsize=(18, 18))
     # interpolate between most similar images
-    labels=["source 1", "intepolated" , "source 2"]
+    labels = ["source 1", "interpolated", "source 2"]
     for j in range(3):
         axes[0, j].title.set_text(labels[j])
     for p, idx in enumerate(indxs[:3]):
@@ -60,7 +59,9 @@ def image_interpolation_example(indxs: List[int]):
             coords = get_mgrid(res, dim=2)
             coords = torch.concat((coords, encoded_index * torch.ones([coords.shape[0], 1])), dim=-1)
             model_output_96 = model(coords)
-            axes[p, j].imshow(model_output_96.cpu().view(res, res, 3).detach().numpy() / 2 + 0.5)
+            img_96 = cv2.cvtColor(np.clip(model_output_96.cpu().view(res, res, 3).detach().numpy() / 2 + 0.5, 0, 1),
+                                  cv2.COLOR_RGB2BGR)
+            axes[p, j].imshow(img_96)
     plt.savefig("image_interpolation_example.jpg")
 
 
@@ -80,7 +81,7 @@ if __name__ == "__main__":
     size_interpolation_example()
 
     # Image interpolation example
-
-    indxs = sort_by_similarity()
+    dataset = r"Data\96"
+    indxs = sort_by_similarity(dataset)
 
     image_interpolation_example(indxs)

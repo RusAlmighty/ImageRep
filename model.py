@@ -43,15 +43,15 @@ class SineLayer(nn.Module):
                 self.linear.weight.uniform_(-np.sqrt(6 / self.in_features) / self.omega_0,
                                             np.sqrt(6 / self.in_features) / self.omega_0)
 
-    def forward(self, input):
-        sin = torch.sin(self.omega_0 * self.linear(input))
+    def forward(self, input_tensor):
+        sin = torch.sin(self.omega_0 * self.linear(input_tensor))
         if self.residual:
-            sin += input
+            sin += input_tensor
         return sin
 
-    def forward_with_intermediate(self, input):
+    def forward_with_intermediate(self, input_tensor):
         # For visualization of activation distributions
-        intermediate = self.omega_0 * self.linear(input)
+        intermediate = self.omega_0 * self.linear(input_tensor)
         return torch.sin(intermediate), intermediate
 
 
@@ -109,12 +109,14 @@ class Siren(LightningModule):
         return loss
 
     def train_dataloader(self):
-        return DataLoader(ImageFitting(self.config.train_dataset_path, limit=self.config.limit),
+        return DataLoader(ImageFitting(self.config.train_dataset_path, limit=self.config.limit, train=True,
+                                       set_transparent_to_white=self.config.set_transparent_to_white),
                           batch_size=self.config.batch_size,
                           collate_fn=collate_1d, shuffle=True, num_workers=self.config.train_workers)
 
     def val_dataloader(self):
-        return DataLoader(ImageFitting(self.config.validation_dataset_path), batch_size=4,
+        return DataLoader(ImageFitting(self.config.validation_dataset_path,
+                                       set_transparent_to_white=self.config.set_transparent_to_white), batch_size=4,
                           collate_fn=collate_1d)
 
     def configure_optimizers(self):

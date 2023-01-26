@@ -1,10 +1,10 @@
 import argparse
 
-import wandb
 from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks import ModelCheckpoint, LearningRateMonitor
 from pytorch_lightning.loggers import WandbLogger
 
+import wandb
 from config import ModelConfig, add_model
 from model import Siren
 
