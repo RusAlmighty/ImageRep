@@ -1,16 +1,14 @@
 name: ImageRep
 channels:
   - pytorch
-  - pip
   - nvidia
-  - conda-forge
   - defaults
 dependencies:
   - numpy
   - torchvision
   - pytorch-cuda=11.6
-  - pytorch
-
+  - pytorch=1.13.1
+  - pip
 
   - pip:
       - matplotlib
